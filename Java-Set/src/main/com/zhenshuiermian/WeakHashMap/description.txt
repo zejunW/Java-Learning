@@ -1,0 +1,31 @@
+WeakHashMap，此种Map的特点是，当除了自身有对key的引用外，此key没有其他引用那么此map会自动丢弃此值，
+见实例WeakHashMapTest：
+此例子中test2方法声明了两个Map对象，一个是HashMap，一个是WeakHashMap，同时向两个map中放入a、b两个对象，当HashMap  remove掉a 并且将a、b都指向null时，WeakHashMap中的a将自动被回收掉。出现这个状况的原因是，对于a对象而言，当HashMap  remove掉并且将a指向null后，除了WeakHashMap中还保存a外已经没有指向a的指针了，所以WeakHashMap会自动舍弃掉a，而对于b对象虽然指向了null，但HashMap中还有指向b的指针，所以WeakHashMap将会保留。
+此例子中test2方法作为对照
+
+实现原理（就是使用了链表，找到key引用为null的，再找到这个hash值;将这个hash值移除,size减少）：
+private void expungeStaleEntries() {
+    Entry<K,V> e;
+    while ( (e = (Entry<K,V>) queue.poll()) != null) {
+        int h = e.hash;
+        int i = indexFor(h, table.length);
+
+        Entry<K,V> prev = table[i];
+        Entry<K,V> p = prev;
+        while (p != null) {
+            Entry<K,V> next = p.next;
+            if (p == e) {
+                if (prev == e)
+                    table[i] = next;
+                else
+                    prev.next = next;
+                e.next = null;  // Help GC
+                e.value = null; //  "   "
+                size--;
+                break;
+            }
+            prev = p;
+            p = next;
+        }
+    }
+}
