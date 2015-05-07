@@ -1,0 +1,10 @@
+代码中线程池统一使用ThreadPoolExecutor
+ThreadPoolExecutor第六个参数“线程池对拒绝任务的处理策略”使用默认策略，即：AbortPolicy，当线程池拒绝task之后抛出RejectedExecutionException异常
+ThreadPoolExecutor统一使用LinkedBlockingQueue作为队列
+分别使用：ThreadPoolExecutor的execute方法、LinkedBlockingQueue的add方法、LinkedBlockingQueue的offer方法、LinkedBlockingQueue的put方法在队列满了之后添加task，测试各自实际效果
+
+AddTaskByExecuteAndPut可以作为阻塞式线程池的原型，应用于流量（数据不可丢弃）等场景的控制。
+
+参考资料：
+http://blog.csdn.net/shixing_11/article/details/7109471
+http://www.jb51.net/article/49088.htm
