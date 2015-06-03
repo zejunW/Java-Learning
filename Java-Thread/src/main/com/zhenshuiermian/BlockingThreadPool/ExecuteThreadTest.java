@@ -5,6 +5,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+
 /**
  * Created by zejunW on 2015/5/7.
  */
@@ -20,6 +21,10 @@ public class ExecuteThreadTest implements Runnable {
         }
     }
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>();
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 6, 1, TimeUnit.DAYS, queue);
