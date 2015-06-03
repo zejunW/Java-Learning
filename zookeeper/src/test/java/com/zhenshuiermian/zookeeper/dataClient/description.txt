@@ -1,0 +1,3 @@
+本目录中的ChildWatchExecutor和DataWatchExecutor两个类分别继承BaseExecutor类，实现了：监控指定路径下子节点数据变化状况及相关附加操作；和监控指定路径的节点数据变化状况及相关附加操作
+
+Test使用junit实例化以上两个实现类，并测试实际程序效果

@@ -1,0 +1,13 @@
+com.zhenshuiermian.zookeeper.dataClient目录下，主要实现了使用zookeeper java接口实现客户端监控和操作zookeeper服务端数据功能
+
+inter目录中的BaseExecutor、MonitorListener和NodeMonitor参照官网例子实现。主要功能有：
+    与zookeeper服务端建立长连接状态，并可监控服务端指定路径的数据或者子节点数据状态，并通过设置的watcher监控连接会话状态和二次监控设置；和通过回调方法获取变更数据。
+
+    BaseExecutor中封装了简单的获取指定节点数据和设置指定节点数据的方法；并且设值时在路径不存在情况下，可迭代逐级创建。
+
+impl目录中其中，ChidrenMonitor：监控子节点数据，实现getChildren方法的异步回调接口；DataMonitor：监控节点数据，实现getData方法的异步回调接口；ExistsMonitor：监控节点存在状况，实现exists方法的异步回调接口
+
+
+
+参照资料：
+http://zookeeper.apache.org/doc/current/javaExample.html
