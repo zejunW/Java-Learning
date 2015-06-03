@@ -1,2 +1,3 @@
 ﻿zookeeper 学习测试Demo代码和java客户端封装
 
+使用maven工程配置工程依赖环境
